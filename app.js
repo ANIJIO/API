@@ -13,7 +13,7 @@ let cors = require('cors');
 let mongo = require('mongodb');
 let bodyparser= require('body-parser')
 let MongoClient = mongo.MongoClient;
-let mongoUrl = process.env.MongoLocal;
+let mongoUrl = "mongodb+srv://aniket:aniket2505@cluster0.q8dlbjn.mongodb.net/flipkart?retryWrites=true&w=majority";
 let db;
 
 
