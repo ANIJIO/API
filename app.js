@@ -176,13 +176,21 @@ app.put('/updateorder/:id',(req,res)=>{
         }
     )
 })
+
+app.delete('/deleteorder/:id',(req,res)=>{
+    let _id=mongo.ObjectId(req.param.id);
+    db.collection('order').deleteOne({_id:"id"},(err,result)=>{
+        if(err) throw err;
+        res.send('order delete')
+    })
+})
 //connection with mongo
 MongoClient.connect(mongoUrl,(err,client)=>{
     if(err) console.log(`Error while connecting`);
      db= client.db('flipkart')
     app.listen(port,() => {
         console.log(`Listing to port ${port}`)
-    })
+})
 })
 
 
