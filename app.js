@@ -30,9 +30,10 @@ app.get('/',(req,res) => {
 
 
 
-app.get("/mobile",(req,res)=>{
+app.get("/ALLdata",(req,res)=>{
     let query ={};
     let Id = Number(req.query.Id);
+    let TypeId = Number(req.query.TypeId);
     let categoryId = Number(req.query.categoryId);
     let lprice= Number(req.query.lprice);
     let hprice = Number(req.query.hprice);
@@ -51,93 +52,95 @@ app.get("/mobile",(req,res)=>{
         }
      }else if(Id){
         query={ "id":Id  }
+     }else if(TypeId){
+        query={ "category_id":TypeId  }
      }
-    db.collection('mobile').find(query).toArray((err,result)=>{
+    db.collection('Alldata').find(query).toArray((err,result)=>{
      if(err) throw err;
      res.send(result)
     })
  });
-app.get("/fashion",(req,res)=>{
-    let query ={};
-    let Id = Number(req.query.Id);
-    let categoryId = Number(req.query.categoryId);
-    let ratingId = Number(req.query.ratingId);
-    let lrating= Number(req.query.lrating);
-    let hrating = Number(req.query.hrating);
-    let lprice= Number(req.query.lprice);
-    let hprice = Number(req.query.hprice);
-    if(categoryId){
-        query={
-            "category_id":categoryId,
-            $and:[{price:{$gt:lprice,$lt:hprice}}]
-        }
-    }else if(ratingId){
-        query={
-            "category_id":ratingId,
-            $and:[{rating:{$gt:lrating,$lt:hrating}}]
-        }
-     }else if(Id){
-        query={ "id":Id  }
-     }
-    db.collection('fashion').find(query).toArray((err,result)=>{
-     if(err) throw err;
-     res.send(result)
-    })
- });
-app.get("/Electronic",(req,res)=>{
-    let query ={};
-    let Id = Number(req.query.Id);
-    let categoryId = Number(req.query.categoryId);
-    let ratingId = Number(req.query.ratingId);
-    let lrating= Number(req.query.lrating);
-    let hrating = Number(req.query.hrating);
-    let lprice= Number(req.query.lprice);
-    let hprice = Number(req.query.hprice);
-    if(categoryId){
-        query={
-            "category_id":categoryId,
-            $and:[{price:{$gt:lprice,$lt:hprice}}]
-        }
-    }else if(ratingId){
-        query={
-            "category_id":ratingId,
-            $and:[{rating:{$gt:lrating,$lt:hrating}}]
-        }
-     }else if(Id){
-        query={ "id":Id  }
-     }
-    db.collection('Electronic').find(query).toArray((err,result)=>{
-     if(err) throw err;
-     res.send(result)
-    })
- });
-app.get("/beauty",(req,res)=>{
-    let query ={};
-    let Id = Number(req.query.Id);
-    let categoryId = Number(req.query.categoryId);
-    let ratingId = Number(req.query.ratingId);
-    let lrating= Number(req.query.lrating);
-    let hrating = Number(req.query.hrating);
-    let lprice= Number(req.query.lprice);
-    let hprice = Number(req.query.hprice);
-    if(categoryId){
-        query={
-            "category_id":categoryId,
-            $and:[{price:{$gt:lprice,$lt:hprice}}]
-        }
-    }else if(ratingId){
-        query={
-            "category_id":ratingId,
-            $and:[{rating:{$gt:lrating,$lt:hrating}}]
-        }
-     }else if(Id){
-        query={ "id":Id  }
-     }
-    db.collection('beauty').find(query).toArray((err,result)=>{
-     if(err) throw err;
-     res.send(result)
-    })
- });
+// app.get("/fashion",(req,res)=>{
+//     let query ={};
+//     let Id = Number(req.query.Id);
+//     let categoryId = Number(req.query.categoryId);
+//     let ratingId = Number(req.query.ratingId);
+//     let lrating= Number(req.query.lrating);
+//     let hrating = Number(req.query.hrating);
+//     let lprice= Number(req.query.lprice);
+//     let hprice = Number(req.query.hprice);
+//     if(categoryId){
+//         query={
+//             "category_id":categoryId,
+//             $and:[{price:{$gt:lprice,$lt:hprice}}]
+//         }
+//     }else if(ratingId){
+//         query={
+//             "category_id":ratingId,
+//             $and:[{rating:{$gt:lrating,$lt:hrating}}]
+//         }
+//      }else if(Id){
+//         query={ "id":Id  }
+//      }
+//     db.collection('fashion').find(query).toArray((err,result)=>{
+//      if(err) throw err;
+//      res.send(result)
+//     })
+//  });
+// app.get("/Electronic",(req,res)=>{
+//     let query ={};
+//     let Id = Number(req.query.Id);
+//     let categoryId = Number(req.query.categoryId);
+//     let ratingId = Number(req.query.ratingId);
+//     let lrating= Number(req.query.lrating);
+//     let hrating = Number(req.query.hrating);
+//     let lprice= Number(req.query.lprice);
+//     let hprice = Number(req.query.hprice);
+//     if(categoryId){
+//         query={
+//             "category_id":categoryId,
+//             $and:[{price:{$gt:lprice,$lt:hprice}}]
+//         }
+//     }else if(ratingId){
+//         query={
+//             "category_id":ratingId,
+//             $and:[{rating:{$gt:lrating,$lt:hrating}}]
+//         }
+//      }else if(Id){
+//         query={ "id":Id  }
+//      }
+//     db.collection('Electronic').find(query).toArray((err,result)=>{
+//      if(err) throw err;
+//      res.send(result)
+//     })
+//  });
+// app.get("/beauty",(req,res)=>{
+//     let query ={};
+//     let Id = Number(req.query.Id);
+//     let categoryId = Number(req.query.categoryId);
+//     let ratingId = Number(req.query.ratingId);
+//     let lrating= Number(req.query.lrating);
+//     let hrating = Number(req.query.hrating);
+//     let lprice= Number(req.query.lprice);
+//     let hprice = Number(req.query.hprice);
+//     if(categoryId){
+//         query={
+//             "category_id":categoryId,
+//             $and:[{price:{$gt:lprice,$lt:hprice}}]
+//         }
+//     }else if(ratingId){
+//         query={
+//             "category_id":ratingId,
+//             $and:[{rating:{$gt:lrating,$lt:hrating}}]
+//         }
+//      }else if(Id){
+//         query={ "id":Id  }
+//      }
+//     db.collection('beauty').find(query).toArray((err,result)=>{
+//      if(err) throw err;
+//      res.send(result)
+//     })
+//  });
     
   app.post('/placeorder',(req,res) =>{
         console.log(req.body);
