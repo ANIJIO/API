@@ -30,6 +30,8 @@ app.get('/',(req,res) => {
 
 
 
+
+
 app.get("/ALLdata",(req,res)=>{
     let query ={};
     let Id = Number(req.query.Id);
@@ -38,8 +40,7 @@ app.get("/ALLdata",(req,res)=>{
     let lprice= Number(req.query.lprice);
     let hprice = Number(req.query.hprice);
     let ratingId = Number(req.query.ratingId);
-    let lrating= Number(req.query.lrating);
-    let hrating = Number(req.query.hrating);
+    let starrating= Number(req.query.starrating);
     if(categoryId){
         query={
             "category_id":categoryId,
@@ -47,8 +48,7 @@ app.get("/ALLdata",(req,res)=>{
         }
     } else if(ratingId){
         query={
-            "category_id":ratingId,
-            $and:[{rating:{$gt:lrating,$lt:hrating}}]
+            $and:[{category_id:ratingId},{rating:starrating}]
         }
      }else if(Id){
         query={ "id":Id  }
